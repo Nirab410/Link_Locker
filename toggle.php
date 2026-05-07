@@ -1,0 +1,1 @@
+<?php require_once __DIR__.'/config/auth.php'; require_login(); $user=current_user();$id=(int)($_GET['id']??0);$stmt=db()->prepare('UPDATE cards SET visibility=IF(visibility="Public","Private","Public") WHERE id=? AND user_id=?');$stmt->bind_param('ii',$id,$user['id']);$stmt->execute();header('Location: dashboard.php?ok='.urlencode('Visibility updated.')); ?>

@@ -1,0 +1,28 @@
+CREATE DATABASE IF NOT EXISTS link_locker CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+USE link_locker;
+
+CREATE TABLE IF NOT EXISTS users (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  username VARCHAR(60) NOT NULL UNIQUE,
+  email VARCHAR(120) NOT NULL UNIQUE,
+  password_hash VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE IF NOT EXISTS cards (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_id INT NOT NULL,
+  title VARCHAR(180) NOT NULL,
+  description TEXT NULL,
+  type ENUM('Link','Image','PDF','Note','Unknown') NOT NULL DEFAULT 'Link',
+  file_path VARCHAR(255) NULL,
+  original_filename VARCHAR(255) NULL,
+  link_url TEXT NULL,
+  note_content TEXT NULL,
+  category VARCHAR(80) NULL,
+  tags VARCHAR(255) NULL,
+  visibility ENUM('Public','Private') NOT NULL DEFAULT 'Private',
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  CONSTRAINT fk_cards_user FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);

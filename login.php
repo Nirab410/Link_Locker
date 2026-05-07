@@ -1,0 +1,5 @@
+<?php
+require_once __DIR__.'/config/auth.php'; if(current_user()){header('Location: dashboard.php');exit;} $error='';
+if($_SERVER['REQUEST_METHOD']==='POST'){ $email=trim($_POST['email']??'');$password=$_POST['password']??''; $stmt=db()->prepare('SELECT * FROM users WHERE email=? LIMIT 1');$stmt->bind_param('s',$email);$stmt->execute();$u=$stmt->get_result()->fetch_assoc(); if(!$u||!password_verify($password,$u['password_hash']))$error='Invalid email or password.'; else {$_SESSION['user']=['id'=>$u['id'],'username'=>$u['username'],'email'=>$u['email']];header('Location: dashboard.php');exit;}}
+require_once __DIR__.'/header.php'; ?>
+<div class="panel auth"><h2>Log in to Link-Locker</h2><?php if($error): ?><div class="error"><?= e($error) ?></div><?php endif; ?><form method="post"><div class="field"><label>Email</label><input class="input" type="email" name="email" required></div><div class="field"><label>Password</label><input class="input" type="password" name="password" required></div><button class="btn" type="submit">Log in</button></form></div><?php require_once __DIR__.'/footer.php'; ?>
