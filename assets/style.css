@@ -814,3 +814,80 @@ select option {
     height: 54px;
   }
 }
+/* ── Dashboard toolbar ── */
+.search-wrap{position:relative;display:flex;align-items:center}
+.search-icon{position:absolute;left:12px;color:var(--muted);pointer-events:none}
+.search-input{padding-left:36px;min-width:260px}
+.filter-select{min-width:140px}
+.toolbar-hint{display:inline-flex;align-items:center;gap:6px;font-size:12px}
+
+/* ── Stats bar ── */
+.stats-bar{
+  display:flex;gap:8px;flex-wrap:wrap;
+  margin-bottom:20px;
+  animation:ll-fadeUp .4s ease both
+}
+.stat-pill{
+  display:flex;align-items:center;gap:7px;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:999px;padding:6px 14px;
+  font-size:13px
+}
+.stat-pill strong{
+  font-family:var(--font-display);
+  font-size:15px;font-weight:800;
+  color:#eef2ff;letter-spacing:-.02em
+}
+.stat-pill span{color:var(--muted);font-size:12px}
+.stat-pill.stat-pub strong{color:#818cf8}
+
+/* ── Empty state ── */
+.empty-state{
+  padding:64px 32px;text-align:center;
+  display:flex;flex-direction:column;align-items:center;gap:14px;
+  animation:ll-fadeUp .5s ease both
+}
+.empty-icon{font-size:52px;line-height:1;margin-bottom:4px}
+.empty-title{
+  font-family:var(--font-display);
+  font-size:22px;font-weight:800;
+  letter-spacing:-.02em;margin:0;color:#eef2ff
+}
+.empty-desc{
+  color:var(--muted);font-size:14px;
+  line-height:1.65;margin:0
+}
+
+/* ── Notice ── */
+.notice{display:flex;align-items:center;gap:8px}
+
+/* ── Modal ── */
+.modal-form{padding:22px}
+.modal-header{
+  display:flex;justify-content:space-between;
+  align-items:flex-start;gap:12px;margin-bottom:18px
+}
+.modal-title{
+  font-family:var(--font-display);
+  font-size:20px;font-weight:800;
+  margin:0 0 4px;letter-spacing:-.02em;color:#eef2ff
+}
+.modal-actions{display:flex;gap:10px;align-items:center;margin-top:4px}
+
+/* ── Grid animation ── */
+#vaultGrid .card{
+  animation:ll-cardIn .35s ease both
+}
+#vaultGrid .card:nth-child(2){animation-delay:.05s}
+#vaultGrid .card:nth-child(3){animation-delay:.1s}
+#vaultGrid .card:nth-child(4){animation-delay:.15s}
+#vaultGrid .card:nth-child(5){animation-delay:.2s}
+#vaultGrid .card:nth-child(6){animation-delay:.25s}
+
+@media(max-width:600px){
+  .search-input{min-width:unset;width:100%}
+  .filter-select{width:100%}
+  .stats-bar{gap:6px}
+  .stat-pill{padding:5px 11px}
+}
