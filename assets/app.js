@@ -197,4 +197,3 @@ window.addEventListener("DOMContentLoaded", () => {
   if ($("#quickModal")) setMode("link");
   filterCards();
 });
-
